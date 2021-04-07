@@ -3,7 +3,7 @@ import uuid
 
 
 class University(models.Model):
-    name = models.EmailField(unique=True)
+    name = models.CharField(max_length=255, unique=True)
     address = models.TextField()
     area = models.CharField(max_length=50)
     createdAt = models.DateTimeField(auto_now_add=True)

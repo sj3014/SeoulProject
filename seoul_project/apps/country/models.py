@@ -10,4 +10,4 @@ class Country(models.Model):
         db_table = 'Country'
 
     def __str__(self):
-        return f'{self.email}'
+        return f'{self.name}'

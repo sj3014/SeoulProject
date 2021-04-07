@@ -1,5 +1,6 @@
 from django.db import models
 import uuid
+from apps.university.models import University
 
 
 class AdminUser(models.Model):
@@ -12,7 +13,8 @@ class AdminUser(models.Model):
     phoneNumber = models.CharField(max_length=12, blank=True, null=True)
     isVerified = models.BooleanField(default=False)
     createdAt = models.DateTimeField(auto_now_add=True)
-    # uniqueID???
+    university = models.ForeignKey(
+        University, on_delete=models.CASCADE, related_name='adminUser_university')
 
     class Meta:
         db_table = 'AdminUser'

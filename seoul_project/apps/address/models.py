@@ -12,3 +12,6 @@ class Address(models.Model):
 
     class Meta:
         db_table = 'Address'
+
+    def __str__(self):
+        return f'{self.address}'
