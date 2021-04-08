@@ -41,9 +41,13 @@ REST_FRAMEWORK = {
     # 'DEFAULT_FILTER_BACKENDS': [
     #     'django_filters.rest_framework.DjangoFilterBackend'
     # ],
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    ],
+    # 'DEFAULT_AUTHENTICATION_CLASSES': [
+    #     'apps.student.authentication.StudentJWTAuthentication',
+    # ],
+    # 'DEFAULT_PERMISSION_CLASSES': [
+    #     'apps.student.permissions.StudentPermission'
+    #     # 'rest_framework.permissions.IsAuthenticated',
+    # ]
 }
 
 
@@ -56,13 +60,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'apps.user.apps.UserConfig',
-    'apps.adminUser.apps.AdminUserConfig',
+    'apps.student.apps.StudentConfig',
+    'apps.universityAdmin.apps.UniversityAdminConfig',
     'apps.address.apps.AddressConfig',
     'apps.country.apps.CountryConfig',
     'apps.university.apps.UniversityConfig',
     'apps.quarantine.apps.QuarantineConfig',
-    'rest_framework'
+    'rest_framework',
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
@@ -73,6 +78,12 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+CORS_ALLOW_CREDENTIALS = True  # to accept cookies via ajax request
+CORS_ORIGIN_WHITELIST = [
+    # the domain for front-end app(you can add more than 1)
+    'http://localhost:3000'
 ]
 
 ROOT_URLCONF = 'seoul_project.urls'
@@ -135,13 +146,13 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
