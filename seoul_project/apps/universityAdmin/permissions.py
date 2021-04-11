@@ -1,12 +1,12 @@
 from rest_framework import permissions
 
 
-class AdminUserPermission(permissions.BasePermission):
+class UniversityAdminPermission(permissions.BasePermission):
     """
     Global permission check for blacklisted IPs.
     """
 
     def has_permission(self, request, view):
-        print("TMP1", request.adminUser.uuid)
+        print("TMP1", request.user.uuid)
         print("TMP2", request.data)
         return True

@@ -27,12 +27,13 @@ class UniversityDetailAPIView(APIView):
 
     def get(self, request, pk, format=None):
         university = self.get_object(pk)
-        serializer = UniversitySerializer(pk)
+        serializer = UniversitySerializer(university)
         return Response(serializer.data)
 
     def put(self, request, pk):
         university = self.get_object(pk)
-        serializer = UniversitySerializer(university, data=request.data)
+        serializer = UniversitySerializer(
+            university, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)

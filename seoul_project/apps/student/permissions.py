@@ -7,6 +7,5 @@ class StudentPermission(permissions.BasePermission):
     """
 
     def has_permission(self, request, view):
-        print("TMP1", request.student.uuid)
-        print("TMP2", request.data)
+        print("TMP1", request.user)
         return True

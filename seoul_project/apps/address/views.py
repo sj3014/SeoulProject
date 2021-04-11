@@ -27,12 +27,13 @@ class AddressDetailAPIView(APIView):
 
     def get(self, request, pk, format=None):
         address = self.get_object(pk)
-        serializer = AddressSerializer(pk)
+        serializer = AddressSerializer(address)
         return Response(serializer.data)
 
     def put(self, request, pk):
         address = self.get_object(pk)
-        serializer = AddressSerializer(address, data=request.data)
+        serializer = AddressSerializer(
+            address, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)

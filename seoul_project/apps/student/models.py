@@ -14,6 +14,7 @@ class Student(models.Model):
     password = models.CharField(max_length=50)
     first_name = models.CharField(max_length=50, blank=True, null=True)
     last_name = models.CharField(max_length=50, blank=True, null=True)
+    middle_name = models.CharField(max_length=50, blank=True, null=True)
     phone_number = models.CharField(max_length=12, blank=True, null=True)
     kakao_id = models.CharField(max_length=50, blank=True, null=True)
     current_location = models.TextField(blank=True, null=True)

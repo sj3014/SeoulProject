@@ -3,10 +3,10 @@ import jwt
 from django.conf import settings
 
 
-def generate_access_token(student):
+def generate_access_token(user):
 
     access_token_payload = {
-        'uuid': student['uuid'],
+        'uuid': user['uuid'],
         'exp': datetime.datetime.utcnow() + datetime.timedelta(days=15),
         'iat': datetime.datetime.utcnow(),
     }
@@ -16,9 +16,9 @@ def generate_access_token(student):
     return access_token
 
 
-def generate_refresh_token(student):
+def generate_refresh_token(user):
     refresh_token_payload = {
-        'uuid': student['uuid'],
+        'uuid': user['uuid'],
         'exp': datetime.datetime.utcnow() + datetime.timedelta(days=30),
         'iat': datetime.datetime.utcnow()
     }

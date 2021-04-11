@@ -66,6 +66,8 @@ INSTALLED_APPS = [
     'apps.country.apps.CountryConfig',
     'apps.university.apps.UniversityConfig',
     'apps.quarantine.apps.QuarantineConfig',
+    'apps.faq.apps.FaqConfig',
+    'apps.announcement.apps.AnnouncementConfig',
     'rest_framework',
     'corsheaders'
 ]
@@ -158,4 +160,4 @@ USE_TZ = False
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = '/static_django/'

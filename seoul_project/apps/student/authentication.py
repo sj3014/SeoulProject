@@ -34,16 +34,14 @@ class StudentJWTAuthentication(BaseAuthentication):
             raise exceptions.AuthenticationFailed('access_token expired')
         except IndexError:
             raise exceptions.AuthenticationFailed('Token prefix missing')
-
         student = Student.objects.filter(uuid=payload['uuid']).first()
-        print(payload['uuid'])
         if student is None:
             raise exceptions.AuthenticationFailed('Student not found')
 
-        # if not student.is_active:
-        #     raise exceptions.AuthenticationFailed('student is inactive')
+        if not student.is_verified:
+            raise exceptions.AuthenticationFailed('student is not verified')
 
-        self.enforce_csrf(request)
+        # self.enforce_csrf(request)
         return (student, None)
 
     def enforce_csrf(self, request):
@@ -54,7 +52,6 @@ class StudentJWTAuthentication(BaseAuthentication):
         # populates request.META['CSRF_COOKIE'], which is used in process_view()
         check.process_request(request)
         reason = check.process_view(request, None, (), {})
-        print(reason)
         if reason:
             # CSRF failed, bail with explicit error message
             raise exceptions.PermissionDenied('CSRF Failed: %s' % reason)

@@ -40,10 +40,11 @@ class UniversityAdminJWTAuthentication(BaseAuthentication):
         if universityAdmin is None:
             raise exceptions.AuthenticationFailed('Admin User not found')
 
-        # if not user.is_active:
-        #     raise exceptions.AuthenticationFailed('user is inactive')
+        if not universityAdmin.is_verified:
+            raise exceptions.AuthenticationFailed(
+                'university admin is not verified')
 
-        self.enforce_csrf(request)
+        # self.enforce_csrf(request)
         return (universityAdmin, None)
 
     def enforce_csrf(self, request):
